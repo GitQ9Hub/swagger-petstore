@@ -3,14 +3,12 @@ servers:
   - url: /v3
 info:
   description: |-
-    This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
-    Swagger at [http://swagger.io](http://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
-    You can now help us improve the API whether it's by making changes to the definition itself or to the code.
-    That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
+    This is a adaptatio of sample  Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
+    Swagger at [http://swagger.io](http://swagger.io).
 
     Some useful links:
     - [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
-    - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+    - [The source API definition for the Pet Store](https://github.com/GitQ9Hub/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
   version: 1.0.20-SNAPSHOT
   title: Swagger Petstore - OpenAPI 3.0
   termsOfService: 'http://swagger.io/terms/'
@@ -20,101 +18,101 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
-  - name: pet
-    description: Everything about your Pets
+  - name: car
+    description: Everything about your Carss
     externalDocs:
       description: Find out more
       url: 'http://swagger.io'
-  - name: store
-    description: Access to Petstore orders
+  - name: washcar
+    description: Access to Washcar orders
     externalDocs:
-      description: Find out more about our store
+      description: Find out more about our washcar
       url: 'http://swagger.io'
   - name: user
     description: Operations about user
 paths:
-  /pet:
+  /car:
     post:
       tags:
-        - pet
-      summary: Add a new pet to the store
-      description: Add a new pet to the store
-      operationId: addPet
+        - car
+      summary: Add a new car to the washcar
+      description: Add a new car to the washcar
+      operationId: addCar
       responses:
         '200':
           description: Successful operation
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pet'
+                $ref: '#/components/schemas/Car'
             application/json:
               schema:
-                $ref: '#/components/schemas/Pet'
+                $ref: '#/components/schemas/Car'
         '405':
           description: Invalid input
       security:
         - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+            - 'write:cars'
+            - 'read:cars'
       requestBody:
-        description: Create a new pet in the store
+        description: Create a new car in the washcar
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Car'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Car'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Car'
     put:
       tags:
-        - pet
-      summary: Update an existing pet
-      description: Update an existing pet by Id
-      operationId: updatePet
+        - car
+      summary: Update an existing car
+      description: Update an existing car by Id
+      operationId: updateCar
       responses:
         '200':
           description: Successful operation
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pet'
+                $ref: '#/components/schemas/Car'
             application/json:
               schema:
-                $ref: '#/components/schemas/Pet'
+                $ref: '#/components/schemas/Car'
         '400':
           description: Invalid ID supplied
         '404':
-          description: Pet not found
+          description: Car not found
         '405':
           description: Validation exception
       security:
         - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+            - 'write:cars'
+            - 'read:cars'
       requestBody:
-        description: Update an existent pet in the store
+        description: Update an existent car in the washcar
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Car'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Car'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Pet'
-  /pet/findByStatus:
+              $ref: '#/components/schemas/Car'
+  /car/findByStatus:
     get:
       tags:
-        - pet
-      summary: Finds Pets by status
+        - car
+      summary: Finds Cars by status
       description: Multiple status values can be provided with comma separated strings
-      operationId: findPetsByStatus
+      operationId: findCarsByStatus
       parameters:
         - name: status
           in: query
@@ -124,9 +122,10 @@ paths:
           schema:
             type: string
             enum:
-              - available
-              - pending
-              - sold
+              - Checkin
+              - Washing
+              - Finished
+              - Delivered
             default: available
       responses:
         '200':
@@ -136,27 +135,27 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Car'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Car'
         '400':
           description: Invalid status value
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  /pet/findByTags:
+        - washcar_auth:
+            - 'write:cars'
+            - 'read:cars'
+  /car/findByTags:
     get:
       tags:
-        - pet
-      summary: Finds Pets by tags
+        - car
+      summary: Finds Cars by tags
       description: >-
         Multiple tags can be provided with comma separated strings. Use tag1,
         tag2, tag3 for testing.
-      operationId: findPetsByTags
+      operationId: findCarsByTags
       parameters:
         - name: tags
           in: query
@@ -175,29 +174,29 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Car'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Car'
         '400':
           description: Invalid tag value
       security:
         - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  '/pet/{petId}':
+            - 'write:cars'
+            - 'read:cars'
+  '/car/{carId}':
     get:
       tags:
-        - pet
-      summary: Find pet by ID
-      description: Returns a single pet
-      operationId: getPetById
+        - car
+      summary: Find car by ID
+      description: Returns a single car
+      operationId: getCarById
       parameters:
-        - name: petId
+        - name: carId
           in: path
-          description: ID of pet to return
+          description: ID of car to return
           required: true
           schema:
             type: integer
@@ -208,56 +207,56 @@ paths:
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pet'
+                $ref: '#/components/schemas/Car'
             application/json:
               schema:
-                $ref: '#/components/schemas/Pet'
+                $ref: '#/components/schemas/Car'
         '400':
           description: Invalid ID supplied
         '404':
-          description: Pet not found
+          description: Car not found
       security:
         - api_key: []
         - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+            - 'write:cars'
+            - 'read:cars'
     post:
       tags:
-        - pet
-      summary: Updates a pet in the store with form data
+        - car
+      summary: Updates a car in the washcar with form data
       description: ''
-      operationId: updatePetWithForm
+      operationId: updateCarWithForm
       parameters:
-        - name: petId
+        - name: carId
           in: path
-          description: ID of pet that needs to be updated
+          description: ID of car that needs to be updated
           required: true
           schema:
             type: integer
             format: int64
         - name: name
           in: query
-          description: Name of pet that needs to be updated
+          description: Name of car that needs to be updated
           schema:
             type: string
         - name: status
           in: query
-          description: Status of pet that needs to be updated
+          description: Status of car that needs to be updated
           schema:
             type: string
       responses:
         '405':
           description: Invalid input
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - washcar_auth:
+            - 'write:cars'
+            - 'read:cars'
     delete:
       tags:
-        - pet
-      summary: Deletes a pet
+        - car
+      summary: Deletes a car
       description: ''
-      operationId: deletePet
+      operationId: deleteCar
       parameters:
         - name: api_key
           in: header
@@ -265,31 +264,31 @@ paths:
           required: false
           schema:
             type: string
-        - name: petId
+        - name: carId
           in: path
-          description: Pet id to delete
+          description: Car id to delete
           required: true
           schema:
             type: integer
             format: int64
       responses:
         '400':
-          description: Invalid pet value
+          description: Invalid car value
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  '/pet/{petId}/uploadImage':
+        - washcar_auth:
+            - 'write:cars'
+            - 'read:cars'
+  '/car/{carId}/uploadImage':
     post:
       tags:
-        - pet
+        - car
       summary: uploads an image
       description: ''
       operationId: uploadFile
       parameters:
-        - name: petId
+        - name: carId
           in: path
-          description: ID of pet to update
+          description: ID of car to update
           required: true
           schema:
             type: integer
@@ -308,20 +307,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - washcar_auth:
+            - 'write:cars'
+            - 'read:cars'
       requestBody:
         content:
           application/octet-stream:
             schema:
               type: string
               format: binary
-  /store/inventory:
+  /washcar/inventory:
     get:
       tags:
-        - store
-      summary: Returns pet inventories by status
+        - washcar
+      summary: Returns car inventories by status
       description: Returns a map of status codes to quantities
       operationId: getInventory
       x-swagger-router-controller: OrderController
@@ -337,12 +336,12 @@ paths:
                   format: int32
       security:
         - api_key: []
-  /store/order:
+  /washcar/order:
     post:
       tags:
-        - store
-      summary: Place an order for a pet
-      description: Place a new order in the store
+        - washcar
+      summary: Place an order for a car
+      description: Place a new order in the washcar
       operationId: placeOrder
       x-swagger-router-controller: OrderController
       responses:
@@ -365,10 +364,10 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/Order'
-  '/store/order/{orderId}':
+  '/washcar/order/{orderId}':
     get:
       tags:
-        - store
+        - washcar
       summary: Find purchase order by ID
       x-swagger-router-controller: OrderController
       description: >-
@@ -399,7 +398,7 @@ paths:
           description: Order not found
     delete:
       tags:
-        - store
+        - washcar
       summary: Delete purchase order by ID
       x-swagger-router-controller: OrderController
       description: >-
@@ -733,7 +732,7 @@ components:
       xml:
         name: tag
       type: object
-    Pet:
+    Car:
       x-swagger-router-model: io.swagger.petstore.model.Pet
       required:
         - name
@@ -766,13 +765,14 @@ components:
               name: tag
         status:
           type: string
-          description: pet status in the store
+          description: car status in the store
           enum:
-            - available
-            - pending
-            - sold
+            - Checkin
+            - Pending
+            - Washing
+            - Delivered
       xml:
-        name: pet
+        name: car
       type: object
     ApiResponse:
       properties:
@@ -787,15 +787,15 @@ components:
         name: '##default'
       type: object
   requestBodies:
-    Pet:
+    Car:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Pet'
+            $ref: '#/components/schemas/Car'
         application/xml:
           schema:
-            $ref: '#/components/schemas/Pet'
-      description: Pet object that needs to be added to the store
+            $ref: '#/components/schemas/Car'
+      description: Car object that needs to be added to the washcar
     UserArray:
       content:
         application/json:
@@ -805,14 +805,14 @@ components:
               $ref: '#/components/schemas/User'
       description: List of user object
   securitySchemes:
-    petstore_auth:
+    washcar_auth:
       type: oauth2
       flows:
         implicit:
           authorizationUrl: 'https://petstore.swagger.io/oauth/authorize'
           scopes:
-            'write:pets': modify pets in your account
-            'read:pets': read your pets
+            'write:pets': modify cars in your account
+            'read:pets': read your cars
     api_key:
       type: apiKey
       name: api_key
